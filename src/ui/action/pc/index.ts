@@ -45,7 +45,7 @@ class ActionPluginPc {
 	listen() {
 		// eslint-disable-next-line
 		this.elem?.requestPointerLock &&
-			(this.elem?.requestPointerLock() as unknown as Promise<null>).catch(() => {
+			(this.elem?.requestPointerLock() as unknown as Promise<null>)?.catch(() => {
 				this.controller.ui.menu.setNotify(language.tryLock, 1000, this.elem);
 			});
 		document.addEventListener('keydown', this.keyListener);
