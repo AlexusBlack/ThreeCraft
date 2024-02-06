@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import UI from '../ui';
 import Core from '../core';
@@ -35,6 +36,7 @@ class Controller {
 	multiPlay: MultiPlay;
 
 	constructor(el: HTMLElement) {
+		this.clock = new THREE.Clock();
 		// 挂载游戏层和控制器层, 默认看不到
 		[...el.children].forEach(d => d.remove());
 		this.gameStage = document.createElement('div');
@@ -150,8 +152,11 @@ class Controller {
 	}
 
 	// 尝试渲染
-	tryRender() {
+	tryRender(deltaTime = 0) {
 		if (!this.running) return;
+		const delta = this.clock.getDelta();
+		requestAnimationFrame(() => this.core.tryRender(delta));
+
 		// 对于VR使用setAnimationLoop
 		if (this.vr) this.core.renderer.setAnimationLoop(this.tryRender.bind(this));
 		else requestAnimationFrame(this.tryRender.bind(this));
@@ -167,9 +172,10 @@ class Controller {
 		this.multiPlay.playersController.render();
 		// FPS继续计数
 		this.uiController.ui.fps.work();
-		this.gameController.update();
+		this.gameController.update(delta);
 		// 尝试渲染场景
-		this.core.tryRender();
+		// We now call it via requestAnimationFrame
+		// this.core.tryRender();
 	}
 }
 

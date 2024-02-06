@@ -34,6 +34,9 @@ class UI {
 		// 菜单对象
 		this.menu = new Menu(document.getElementById('app'), this.controller);
 		document.oncontextmenu = () => false;
+
+		// Auto-start
+		this.menu.controller.startGame(false);
 	}
 
 	listenAll() {

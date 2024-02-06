@@ -130,6 +130,7 @@ class Menu {
 			<button id="chrome-recommend" class="button hidden">${language.chromeSupport}</button>`;
 		// 单人游戏
 		const singlePlayerGame = this.boxElem.querySelector('#single-player-game');
+
 		singlePlayerGame.addEventListener('click', e => {
 			e.stopPropagation();
 			this.controller.startGame(false);

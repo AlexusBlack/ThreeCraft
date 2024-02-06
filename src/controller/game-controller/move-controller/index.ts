@@ -30,10 +30,10 @@ class MoveController {
 	}
 
 	// 尝试执行注册的运动
-	positionMove({ font, left, up }) {
+	positionMove({ font, left, up }, deltaTime: number) {
 		// 如果在作弊模式下就不进行碰撞检测, 直接设置位置
 		if (config.controller.cheat) {
-			const targetPos = getTargetPosition({ ...config.state, font, left, up, core: this.core });
+			const targetPos = getTargetPosition({ ...config.state, font, left, up, core: this.core, deltaTime });
 			if (targetPos.posX !== config.state.posX || targetPos.posY !== config.state.posY || targetPos.posZ !== config.state.posZ) this.host.hasChange = true;
 			this.core.camera.position.set(targetPos.posX, targetPos.posY, targetPos.posZ);
 			config.state = { ...targetPos };
@@ -47,7 +47,8 @@ class MoveController {
 		// 获取理应下降的距离
 		up = this.getVerticalMove();
 		// 获取没有碰撞物时理想位置
-		const targetPos = getTargetPosition({ ...config.state, font, left, up, core: this.core });
+		// adjust the position based on delta time
+		const targetPos = getTargetPosition({ ...config.state, font, left, up, core: this.core, deltaTime });
 		// 碰撞测试
 		const collisions = relativeCollisionCheckAll({
 			...config.state,
@@ -55,6 +56,7 @@ class MoveController {
 			left,
 			up,
 			core: this.core,
+			deltaTime,
 			log: this.host.host.log,
 		});
 

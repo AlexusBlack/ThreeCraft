@@ -110,9 +110,9 @@ class GameController {
 	}
 
 	// 当下一帧渲染时执行请求, 并重设状态
-	update() {
+	update(deltaTime: number) {
 		this.moveController.viewDirectionMove(this.nextTrickViewTask);
-		this.moveController.positionMove(this.nextTrickMoveTask);
+		this.moveController.positionMove(this.nextTrickMoveTask, deltaTime);
 		this.nextTrickViewTask = { viewHorizontal: 0, viewVertical: 0 };
 		this.blockController.update(this.nextTrickBlockTask);
 		this.blockController.highlightCurrentBlock();

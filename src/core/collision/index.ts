@@ -185,15 +185,15 @@ export function relativeOperateCollisionCheck({ posX, posY, posZ, font, left, up
  * @returns null: 没有碰撞
  * @returns {obj: 碰撞物体, pos: 发生碰撞时相机位置}
  */
-export function relativeCollisionCheckAll({ posX, posY, posZ, font, left, up, core, log }) {
+export function relativeCollisionCheckAll({ posX, posY, posZ, font, left, up, core, deltaTime, log }) {
 	// 将相对运动方向三值化? (x/y/z = -1/0/1)
 	const dirU = getDir(new THREE.Vector3(-left, up, -font));
 	// 相机位置与需要转过的欧拉角
 	const origin = new THREE.Vector3(posX, posY, posZ);
 	const eulerRotate = new THREE.Euler(0, core.camera.rotation.y, 0, 'YXZ');
 	// 计算在水平与垂直方向速度
-	const scaleXOZ = symConfig.actionsScale.walking * symConfig.actionsScale.moveScale * config.controller.opSens;
-	const scaleOY = symConfig.actionsScale.jump * symConfig.actionsScale.moveScale;
+	const scaleXOZ = symConfig.actionsScale.walking * symConfig.actionsScale.moveScale * config.controller.opSens * deltaTime;
+	const scaleOY = symConfig.actionsScale.jump * symConfig.actionsScale.moveScale * deltaTime;
 	// 计算绝对移动方向与速度
 	const absolute = new THREE.Vector3(-left, up, -font).applyEuler(eulerRotate);
 	absolute.x *= scaleXOZ;
@@ -273,10 +273,10 @@ export function relativeCollisionCheckAll({ posX, posY, posZ, font, left, up, co
 }
 
 // 获取理想的运动位置
-export function getTargetPosition({ posX, posY, posZ, font, left, up, core }) {
+export function getTargetPosition({ posX, posY, posZ, font, left, up, core, deltaTime }) {
 	// 水平与垂直的速度
-	const scaleXOZ = (config.controller.cheat ? symConfig.actionsScale.cheatFactor : 1) * symConfig.actionsScale.walking * symConfig.actionsScale.moveScale * config.controller.opSens;
-	const scaleOY = (config.controller.cheat ? symConfig.actionsScale.cheatFactor : 1) * symConfig.actionsScale.jump * symConfig.actionsScale.moveScale;
+	const scaleXOZ = (config.controller.cheat ? symConfig.actionsScale.cheatFactor : 1) * symConfig.actionsScale.walking * symConfig.actionsScale.moveScale * config.controller.opSens * deltaTime;
+	const scaleOY = (config.controller.cheat ? symConfig.actionsScale.cheatFactor : 1) * symConfig.actionsScale.jump * symConfig.actionsScale.moveScale * deltaTime;
 	// 绝对移动方向
 	const absolute = new THREE.Vector3(-left, up, -font).applyEuler(new THREE.Euler(0, core.camera.rotation.y, 0, 'YXZ'));
 	absolute.x *= scaleXOZ;
