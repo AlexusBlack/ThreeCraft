@@ -59,10 +59,10 @@ const symConfig = {
 	},
 	actionsScale: {
 		walking: 8,
-		jump: 7,
-		fall: 7,
+		jump: 9,
+		fall: 9,
 		cheatFactor: 2,
-		moveScale: 0.02,
+		moveScale: 1,
 		viewScale: 0.005,
 		g: 0.04,
 	},
@@ -148,7 +148,7 @@ const defaultConfig = {
 	log: [],
 };
 
-const languages = [langCN, langEN];
-const language = deepClone(languages[/^\/en/.test(document.location.pathname) ? 1 : 0]);
+const languages = [langEN, langCN];
+const language = deepClone(languages[/^\/cn/.test(document.location.pathname) ? 1 : 0]);
 
 export { config, symConfig, defaultConfig, language, languages };
