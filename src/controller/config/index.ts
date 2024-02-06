@@ -63,7 +63,7 @@ const symConfig = {
 		fall: 9,
 		cheatFactor: 2,
 		moveScale: 1,
-		viewScale: 0.005,
+		viewScale: 0.5,
 		g: 0.04,
 	},
 	body: {

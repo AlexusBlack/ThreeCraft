@@ -88,13 +88,13 @@ class MoveController {
 	}
 
 	// 修正相机角度
-	viewDirectionMove({ viewHorizontal, viewVertical }) {
+	viewDirectionMove({ viewHorizontal, viewVertical }, deltaTime) {
 		if (viewHorizontal === 0 && viewVertical === 0) return;
 		this.host.hasChange = true;
-		this.core.camera.rotation.y += -viewHorizontal * symConfig.actionsScale.viewScale * config.controller.opSens;
+		this.core.camera.rotation.y += -viewHorizontal * symConfig.actionsScale.viewScale * config.controller.opSens * deltaTime;
 		while (this.core.camera.rotation.y > Math.PI) this.core.camera.rotation.y -= Math.PI * 2;
 		while (this.core.camera.rotation.y < -Math.PI) this.core.camera.rotation.y += Math.PI * 2;
-		this.core.camera.rotation.x += viewVertical * symConfig.actionsScale.viewScale;
+		this.core.camera.rotation.x += viewVertical * symConfig.actionsScale.viewScale * deltaTime;
 		this.core.camera.rotation.x = Math.max(Math.min(this.core.camera.rotation.x, Math.PI * 0.495), -Math.PI * 0.495);
 		this.core.camera.updateMatrix();
 	}
