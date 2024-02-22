@@ -3,6 +3,7 @@ import Crosshair from './crosshair';
 import Fps from './fps';
 import Bag from './bag';
 import Menu from './menu';
+import LinkUI from './link';
 import ActonControl from './action';
 import { Controller } from '../controller';
 import { config } from '../controller/config';
@@ -17,6 +18,8 @@ class UI {
 	bag: Bag;
 
 	menu: Menu;
+
+	linkUI: LinkUI;
 
 	controller: Controller;
 
@@ -33,8 +36,10 @@ class UI {
 		this.bag = new Bag(document.getElementById('HUD-stage'));
 		// 菜单对象
 		this.menu = new Menu(document.getElementById('app'), this.controller);
+		this.linkUI = new LinkUI(document.getElementById('app'), this.controller);
 		document.oncontextmenu = () => false;
 
+		// TODO: Load index world
 		// Auto-start
 		this.menu.controller.startGame(false);
 	}

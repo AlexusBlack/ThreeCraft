@@ -4,7 +4,7 @@
   <h2>ThreeCraft</h2>
 
   <p>
-    <strong>⛏ MineCraft Release Based on Three.js</strong>
+    <strong>MineCraft like game based Three.js with support of hyperlinks to navigate between servers.</strong>
   </p>
 
   <p>
@@ -12,17 +12,30 @@
     <img alt="Socket.io" src="https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=Socket.io&logoColor=white"/>
     <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/>
     <img alt="Vite" src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=Vite&logoColor=white"/>
-
   </p>
 
   <h4>
     <a href="https://mc.liukairui.me/en">Live Demo</a>
-    <span> | </span>
-    <a href="https://github.com/KairuiLiu/ThreeCraft/blob/master/README.md">English</a>
-    <span> | </span>
-    <a href="https://github.com/KairuiLiu/ThreeCraft/blob/master/README-CN.md">简体中文</a>
   </h4>
 </div>
+
+### 📝 ToDo (PoC)
+
+- Allow to place link block that permits entering a link and exit hash
+- Load index save file when serve loads instead of random generation
+- Allow to place user in specific location based on provided hash
+
+### 📝 ToDo (Extras)
+
+- When user looks at link area show target link URL in bottom left corner
+- Create identity server to have share identity and inventory between servers
+- OR create decentralised inventory/identity exchange protocol (preferable?)
+
+### 📝 ToDo (Legal)
+
+- Replace all "MineCraft" mentions with TreeCraft for copyright reasons
+- Replace MC textures with freely available, like Pixel Perfection by XSSHeep
+- Replace MC sounds with freely available
 
 ### ✨ Feature
 
